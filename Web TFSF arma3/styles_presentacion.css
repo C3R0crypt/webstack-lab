@@ -1,0 +1,221 @@
+/* ---------------- RESET ---------------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ---------------- VARIABLES ---------------- */
+:root {
+  --color-bg: #0e1117;
+  --color-dark: #1a1d23;
+  --color-red: #ff0310;
+  --color-red-dark: #a11217;
+  --color-red-light: #ff4c4c;
+  --color-red-deep: #330000;
+  --color-text: #e0e0e0;
+}
+
+/* ---------------- BASE ---------------- */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ---------------- NAVBAR ---------------- */
+.navbar {
+  background-color: var(--color-dark);
+  border-bottom: 2px solid var(--color-red-dark);
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--color-red) !important;
+}
+
+.nav-link {
+  color: #ccc !important;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--color-red-light) !important;
+  border-bottom: 2px solid var(--color-red);
+}
+
+/* Dropdown */
+.dropdown-menu {
+  background-color: var(--color-red-deep);
+  border: 1px solid var(--color-red-dark);
+}
+
+.dropdown-item {
+  color: #ccc;
+  border-left: 3px solid transparent;
+  transition: background 0.3s ease, color 0.3s ease, border-left 0.3s ease;
+}
+
+.dropdown-item:hover {
+  background-color: #5f0809;
+  color: #fff;
+  border-left: 3px solid var(--color-red);
+}
+
+/* ---------------- HERO ---------------- */
+.hero {
+  background: url('banner.jpg') center/cover no-repeat;
+  min-height: 80vh;
+  padding: 100px 20px;
+  text-align: center;
+  color: #fff;
+  border-bottom: 2px solid var(--color-red-deep);
+}
+
+.hero h1 {
+  font-size: 3rem;
+  margin-bottom: 15px;
+  text-shadow: 2px 2px 4px #000;
+  color: var(--color-red);
+}
+
+.hero p {
+  font-size: 1.25rem;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  text-shadow: 1px 1px 3px #000;
+  color: var(--color-red-light);
+}
+
+/* Botón principal */
+.hero .btn {
+  font-weight: bold;
+  background-color: var(--color-red);
+  border: none;
+  color: #fff;
+  box-shadow: 0 0 12px rgba(255, 76, 76, 0.5);
+  transition: transform 0.3s ease, background 0.3s ease, opacity 0.3s ease;
+}
+
+.hero .btn:hover {
+  transform: scale(1.05);
+  background-color: var(--color-red-dark);
+}
+
+.hero .btn.clicked {
+  opacity: 0.7;
+  pointer-events: none;
+  animation: buttonPulse 0.6s ease forwards;
+}
+
+@keyframes buttonPulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.85); opacity: 0.6; }
+  100% { transform: scale(0.9); opacity: 0.7; }
+}
+
+/* ---------------- LOADING ---------------- */
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--color-bg);
+  display: none;              
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;                 
+  transition: opacity 0.6s ease;
+}
+
+/* Estado visible */
+.loading-screen.active {
+  display: flex;              
+  opacity: 1;                 
+  animation: fadeInOverlay 0.6s ease forwards;
+}
+
+.loading-overlay {
+  text-align: center;
+  animation: pulseOverlay 2s ease-in-out infinite;
+}
+
+.radar-loader {
+  width: 80px;
+  height: 80px;
+  border: 6px solid var(--color-red);
+  border-radius: 50%;
+  border-top: 6px solid transparent;
+  animation: spinRadar 1.2s linear infinite;
+  box-shadow: 0 0 20px rgba(255, 76, 76, 0.5);
+  margin: 0 auto 20px;
+}
+
+@keyframes spinRadar {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 1.2rem;
+  color: var(--color-red-light);
+  letter-spacing: 2px;
+  animation: scanText 2s infinite;
+}
+
+@keyframes scanText {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+@keyframes fadeInOverlay {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pulseOverlay {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.02); }
+}
+
+
+/* ---------------- FOOTER ---------------- */
+footer {
+  font-size: 0.9em;
+  border-top: 2px solid var(--color-red-dark);
+  background-color: var(--color-dark);
+  color: var(--color-red-light);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (min-width: 1200px) {
+  .hero h1 { font-size: 3.5rem; }
+  .hero p { font-size: 1.3rem; }
+}
+
+@media (max-width: 992px) {
+  .hero {
+    padding: 80px 15px;
+    min-height: 70vh;
+  }
+  .hero h1 { font-size: 2.5rem; }
+  .hero p { font-size: 1.1rem; max-width: 90%; }
+  .navbar-brand { font-size: 1.3rem; }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 60px 10px;
+    min-height: 60vh;
+  }
+  .hero h1 { font-size: 2rem; }
+  .hero p { font-size: 1rem; max-width: 100%; }
+  .hero .btn { padding: 10px 20px; font-size: 0.9rem; }
+  footer { font-size: 0.8em; }
+  .navbar-brand { font-size: 1.1rem; }
+}
